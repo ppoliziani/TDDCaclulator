@@ -21,4 +21,18 @@ public class NumStack {
     this.numstack.push(entryFloat);
   }
 
+
+  /**
+   * Pops the last value from the stack.
+   * 
+   * @return float popped from the stack
+   */
+  public float pop() throws BadTypeException {
+    float value = 0;
+    Entry e = this.numstack.pop();
+    value = e.getValue();
+
+    return value;
+  }
+
 }

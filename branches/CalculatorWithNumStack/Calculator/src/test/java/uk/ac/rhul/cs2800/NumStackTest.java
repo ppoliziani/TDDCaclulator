@@ -25,5 +25,24 @@ class NumStackTest {
   void testPush() {
     nstack.push(1);
   }
+  
+  @Test
+  // 2nd Test
+  // To pass this test I added the pop method to the NumStack class.
+  void testPop() throws BadTypeException {
+    nstack.push(1);
+    assertEquals(nstack.pop(), 1, "Testing to see if the correct value is returned");
+  }
+  
+  @Test
+  // 3rd Test
+  // Did not need to make any changes to the method to pass this test
+  void testMultiplePushesAndAPop() throws BadTypeException {
+    for (int x = 0; x <= 10; x++) {
+      nstack.push(x);
+    }
+    assertEquals(nstack.pop(), 10, 
+        "Test to see if the last value is popped");
+  }
 
 }

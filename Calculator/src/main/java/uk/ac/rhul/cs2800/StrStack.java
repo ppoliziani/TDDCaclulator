@@ -30,4 +30,13 @@ public class StrStack {
     return str;
   }
 
+  /**
+   * Checks if the stack is empty or not.
+   * 
+   * @return if the stack is empty
+   */
+  public boolean isEmpty() {
+    return this.strStack.size() == 0;
+  }
+
 }

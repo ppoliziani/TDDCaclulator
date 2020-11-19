@@ -25,10 +25,23 @@ class OpStackTest {
   
   @Test
   // 2nd Test
-  //
+  // To pass this test I added a pop method that creates an entry object 
+  // and gets and returns that value stored in that object
   void testPop() throws BadTypeException {
     opstack.push(Symbol.DIVIDE);
     assertEquals(opstack.pop(), Symbol.DIVIDE, "Test to see if the correct symbol is returned");
+  }
+  
+  @Test
+  // 3rd Test
+  // To pass this test I created an isEmpty method that 
+  // checks the size of the stack returning true or false
+  void testisEmpty() {
+    assertEquals(opstack.isEmpty(), true, "Test to see if empty stack returns true");
+    
+    opstack.push(Symbol.PLUS);
+    opstack.push(Symbol.DIVIDE);
+    assertEquals(opstack.isEmpty(), false, "Test to see if a non-empty stack returns false");
   }
 
 }

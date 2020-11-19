@@ -35,7 +35,7 @@ class OpStackTest {
   @Test
   // 3rd Test
   // To pass this test I created an isEmpty method that 
-  // checks the size of the stack returning true or false
+  // checks the size of the stack, returning true or false
   void testisEmpty() {
     assertEquals(opstack.isEmpty(), true, "Test to see if empty stack returns true");
     

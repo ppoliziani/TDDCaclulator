@@ -1,5 +1,7 @@
 package uk.ac.rhul.cs2800;
 
+import java.util.EmptyStackException;
+
 /**
  * String stack abstraction for the stack class.
  * 
@@ -25,9 +27,13 @@ public class StrStack {
    */
   public String pop() throws BadTypeException {
     String str = "";
-    Entry e = this.strStack.pop();
-    str = e.getString();
-    return str;
+    if (this.isEmpty()) {
+      throw new EmptyStackException();
+    } else {
+      Entry e = this.strStack.pop();
+      str = e.getString();
+      return str;
+    }
   }
 
   /**

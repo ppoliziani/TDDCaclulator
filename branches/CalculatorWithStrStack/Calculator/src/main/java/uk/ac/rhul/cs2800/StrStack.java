@@ -6,8 +6,8 @@ package uk.ac.rhul.cs2800;
  * @author Philip
  */
 public class StrStack {
-  
-  Stack strstack = new Stack();
+
+  Stack strStack = new Stack();
 
   /**
    * Pushes string value onto the stack.
@@ -15,7 +15,19 @@ public class StrStack {
    * @param str string stored in entry object
    */
   public void push(String str) {
-    this.strstack.push(new Entry(str));
+    this.strStack.push(new Entry(str));
+  }
+
+  /**
+   * Pops the last element from the stack.
+   * 
+   * @return String from top element of the stack
+   */
+  public String pop() throws BadTypeException {
+    String str = "";
+    Entry e = this.strStack.pop();
+    str = e.getString();
+    return str;
   }
 
 }

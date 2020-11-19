@@ -31,8 +31,17 @@ public class NumStack {
     float value = 0;
     Entry e = this.numstack.pop();
     value = e.getValue();
-
     return value;
+  }
+
+
+  /**
+   * Checks to see if the stack is empty or not.
+   * 
+   * @return if stack is empty
+   */
+  public boolean isEmpty() {
+    return this.numstack.size() == 0;
   }
 
 }

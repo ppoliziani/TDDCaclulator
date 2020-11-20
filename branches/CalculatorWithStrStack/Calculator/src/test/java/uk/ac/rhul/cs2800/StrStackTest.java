@@ -24,31 +24,31 @@ class StrStackTest {
   void testPush() {
     sstack.push("Test String");
   }
-  
+
   @Test
   // 2nd Test
-  // To pass this test I created a pop method that creates an entry object 
-  // and gets and returns the value stored in it 
+  // To pass this test I created a pop method that creates an entry object
+  // and gets and returns the value stored in it
   void testPop() throws BadTypeException {
     sstack.push("Test String");
     assertEquals(sstack.pop(), "Test String", "Test to see if pop returns the correct string");
   }
-  
+
   @Test
   // 3rd Test
   // To pass this test I added an isEmpty method that checks if the size of the stack is 0
   void testisEmpty() {
-    assertEquals(sstack.isEmpty(), true, 
+    assertEquals(sstack.isEmpty(), true,
         "Test to see if an empty stack returns the correct boolean value");
   }
-  
+
   @Test
   // 4th Test
-  // To pass this test I added a check in the pop method that first checks if the stack 
-  // is empty using the isEmpty method and throws an EmptyStackException if it is or 
+  // To pass this test I added a check in the pop method that first checks if the stack
+  // is empty using the isEmpty method and throws an EmptyStackException if it is or
   // returns the appropriate string if not
   void testException() {
-    assertThrows(EmptyStackException.class, () -> sstack.pop(), 
+    assertThrows(EmptyStackException.class, () -> sstack.pop(),
         "Test to see if a pop on an empty stack throws the correct exception");
-   }
+  }
 }

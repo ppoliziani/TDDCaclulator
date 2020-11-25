@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 /**
  * Where all the JavaFX magic happens.
@@ -18,6 +19,18 @@ public class MyView {
 
   @FXML
   private Label newlabel;
+  
+  @FXML
+  private TextField expressionBox;
+
+  @FXML
+  private Label experssionTitle;
+
+  @FXML
+  private Label resultTitle;
+
+  @FXML
+  private Label resultLabel;
 
   private int toggle = 0;
 
@@ -44,5 +57,13 @@ public class MyView {
     newlabel.setText(text);
     */
   }
+  
+  @FXML
+  void expressionEntered(ActionEvent event) {
+    String expres = expressionBox.getText();
+    resultLabel.setText(expres);
+  }
+
+
 
 }

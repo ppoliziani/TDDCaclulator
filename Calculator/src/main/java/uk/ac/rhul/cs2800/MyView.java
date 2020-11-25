@@ -58,6 +58,11 @@ public class MyView {
     */
   }
   
+  /**
+   * Prints the contents of the expression box to the result Label.
+   * 
+   * @param event when text is entered
+   */
   @FXML
   void expressionEntered(ActionEvent event) {
     String expres = expressionBox.getText();

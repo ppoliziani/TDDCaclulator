@@ -1,5 +1,6 @@
 package uk.ac.rhul.cs2800;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -17,25 +18,50 @@ public class RevPolishCalc implements CalculatorInterface {
    *
    * @param what string to be evaluated
    * @return evaluated expression
+   * @throws BadTypeException
    *
    */
-  public float evaluate(String what) throws InvalidExpressionException {
+  // Works but not using the Symbol types
+  public float evaluate(String what) throws InvalidExpressionException, BadTypeException {
 
     if (what.equals("")) {
       throw new InvalidExpressionException("Must provide an expression");
     }
-    
+
     Scanner expression = new Scanner(what);
-    String strresult = "";
+
+    ArrayList<String> symbols = new ArrayList<String>();
 
     while (expression.hasNext()) {
       String value = expression.next();
-      strresult += value;
+      System.out.println(value);
+      if (value.equals("+") || value.equals("-") || value.equals("*") || value.equals("/")) {
+        symbols.add(value);
+        System.out.println("SYMBOL: " + value);
+      } else {
+        revStack.push(Float.parseFloat(value));
+        System.out.println("FLOAT:  " + Float.parseFloat(value));
+      }
     }
-    expression.close();
-    System.out.println(strresult);
 
-    float result = 9;
+    float result;
+
+    for (String symbol : symbols) {
+      if (symbol.equals("+")) {
+        revStack.push(revStack.pop() + revStack.pop());
+      } else if (symbol.equals("-")) {
+        revStack.push(revStack.pop() - revStack.pop());
+      } else if (symbol.equals("*")) {
+        revStack.push(revStack.pop() * revStack.pop());
+      } else if (symbol.equals("/")) {
+        revStack.push(revStack.pop() / revStack.pop());
+      }
+    }
+
+    result = revStack.pop();
+
+    expression.close();
+
     return result;
   }
 

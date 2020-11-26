@@ -21,6 +21,10 @@ public class RevPolishCalc implements CalculatorInterface {
    */
   public float evaluate(String what) throws InvalidExpressionException {
 
+    if (what.equals("")) {
+      throw new InvalidExpressionException("Must provide an expression");
+    }
+    
     Scanner expression = new Scanner(what);
     String strresult = "";
 

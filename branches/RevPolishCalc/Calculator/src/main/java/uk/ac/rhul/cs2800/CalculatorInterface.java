@@ -14,6 +14,6 @@ public interface CalculatorInterface {
    * @param what string to be evaluated
    * @return evaluated string
    */
-  float evaluate(String what) throws InvalidExpressionException;
+  float evaluate(String what) throws InvalidExpressionException, BadTypeException;
 
 }

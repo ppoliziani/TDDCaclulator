@@ -20,6 +20,17 @@ public class RevPolishCalc implements CalculatorInterface {
    *
    */
   public float evaluate(String what) throws InvalidExpressionException {
+
+    Scanner expression = new Scanner(what);
+    String strresult = "";
+
+    while (expression.hasNext()) {
+      String value = expression.next();
+      strresult += value;
+    }
+    expression.close();
+    System.out.println(strresult);
+
     float result = 9;
     return result;
   }

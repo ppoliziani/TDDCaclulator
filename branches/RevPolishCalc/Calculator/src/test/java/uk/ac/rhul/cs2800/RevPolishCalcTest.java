@@ -3,7 +3,6 @@ package uk.ac.rhul.cs2800;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.EmptyStackException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +21,15 @@ class RevPolishCalcTest {
   // along with the evaluate method. I faked this test by getting the method to return 9.
   void testFloat() throws InvalidExpressionException {
     assertEquals(revCalc.evaluate("7 2 +"), 9, "Test to see if a float is returned");
+  }
+
+  @Test
+  // 2nd Test
+  // To pass this test I added a scanner that reads the
+  // input of the string given to it and prints it to the console.
+  void testReadingString() throws InvalidExpressionException {
+    assertEquals(revCalc.evaluate("7 2 +"), "72+",
+        "Test to see if the string/expression passed is being read");
   }
 
 }

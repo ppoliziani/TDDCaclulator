@@ -1,5 +1,7 @@
 package uk.ac.rhul.cs2800;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,37 +31,50 @@ public class RevPolishCalc implements CalculatorInterface {
     }
 
     Scanner expression = new Scanner(what);
-
-    ArrayList<String> symbols = new ArrayList<String>();
-
-    while (expression.hasNext()) {
-      String value = expression.next();
-      System.out.println(value);
-      if (value.equals("+") || value.equals("-") || value.equals("*") || value.equals("/")) {
-        symbols.add(value);
-        System.out.println("SYMBOL: " + value);
-      } else {
-        revStack.push(Float.parseFloat(value));
-        System.out.println("FLOAT:  " + Float.parseFloat(value));
+    System.out.println(what);
+    
+    try {
+      while (expression.hasNext()) {
+        if (expression.hasNextFloat()) {
+          revStack.push(expression.nextFloat());
+          continue;
+        }
+        String value = expression.next();
+        Symbol s = Symbol.INVALID;
+        for (Symbol sym : Symbol.values()) {
+          if (sym.toString().equals(value)) {
+            s = sym;
+            break;
+          }
+        }
+        
+        switch (s) {
+          case PLUS:
+            revStack.push(revStack.pop() + revStack.pop());
+            break;
+          case MINUS:
+            float secondArgumentM = revStack.pop();
+            revStack.push(revStack.pop() - secondArgumentM);
+            break;
+          case TIMES:
+            revStack.push(revStack.pop() * revStack.pop());
+            break;
+          case DIVIDE:
+            float secondArgumentD = revStack.pop();
+            revStack.push(revStack.pop() / secondArgumentD);
+            break;
+          default:
+            break;
+        }
       }
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+    
+    float result = revStack.pop();
+    System.out.println("RES: " + result);
 
-    float result;
-
-    for (String symbol : symbols) {
-      if (symbol.equals("+")) {
-        revStack.push(revStack.pop() + revStack.pop());
-      } else if (symbol.equals("-")) {
-        revStack.push(revStack.pop() - revStack.pop());
-      } else if (symbol.equals("*")) {
-        revStack.push(revStack.pop() * revStack.pop());
-      } else if (symbol.equals("/")) {
-        revStack.push(revStack.pop() / revStack.pop());
-      }
-    }
-
-    result = revStack.pop();
-
+    
     expression.close();
 
     return result;

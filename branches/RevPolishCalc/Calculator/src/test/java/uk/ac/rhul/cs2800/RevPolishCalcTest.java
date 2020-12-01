@@ -63,15 +63,15 @@ class RevPolishCalcTest {
     assertEquals(revCalc.evaluate("100 83 -"), 17, "Test to see if the evaluate method works");
     assertEquals(revCalc.evaluate("5 4 6 + * "), 50, "Test to see if the evaluate method works");
   }
-  
+
   @Test
   // 5th Test
-  // To pass this test I added a DecimalFormat call that limits 
+  // To pass this test I added a DecimalFormat call that limits
   // the decimal places to 5 from the result of the evaluation
   //
-  // When testing "44 18 * 123 /" I noticed that the evaluating was happening after everything was 
-  // read which meant that the * in between was not operating on the correct values. 
-  // To fix this I brought the switch statement inside the while loop so that when a symbol was 
+  // When testing "44 18 * 123 /" I noticed that the evaluating was happening after everything was
+  // read which meant that the * in between was not operating on the correct values.
+  // To fix this I brought the switch statement inside the while loop so that when a symbol was
   // read it would immediately do the operation
   void testDecimalPoints() throws InvalidExpressionException, BadTypeException {
     assertEquals(revCalc.evaluate("123 44 18 * /"), 0.15530303120613098,

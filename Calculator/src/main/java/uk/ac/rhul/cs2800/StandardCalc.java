@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class StandardCalc implements CalculatorInterface {
 
-  OpStack values = new OpStack();
+  OpStack opStack = new OpStack();
   RevPolishCalc rpCalc = new RevPolishCalc();
 
   /**
@@ -19,19 +19,44 @@ public class StandardCalc implements CalculatorInterface {
    * 
    * @param what expression to be converted and evaluated
    * @return result of expression
+   * @throws BadTypeException if the type is incorrect
+   * @throws InvalidExpressionException if the expression is is null or empty
    */
-  public float evaluate(String what) {
+  public float evaluate(String what) throws InvalidExpressionException, BadTypeException {
+
+
+    StringBuilder postfixExpression = new StringBuilder();
 
     Scanner expression = new Scanner(what);
 
     while (expression.hasNext()) {
       if (expression.hasNextFloat()) {
-        System.out.println(expression.nextFloat());
+        float num = expression.nextFloat();
+        System.out.println(num);
+        postfixExpression.append(num + " ");
+        continue;
       }
+      String value = expression.next();
+      Symbol s = Symbol.INVALID;
+      for (Symbol sym : Symbol.values()) {
+        if (sym.toString().equals(value)) {
+          s = sym;
+          if (opStack.isEmpty()) { // or precedence is greater
+            opStack.push(s);
+          } else {
+            // check precedence until correct place found
+          }
+          break;
+        }
+      }
+
     }
+    expression.close();
 
-    float result = 20;
+    System.out.println(postfixExpression);
 
+    float result = rpCalc.evaluate(what);
+    System.out.println(result);
     return result;
   }
 

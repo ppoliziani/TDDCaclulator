@@ -46,9 +46,14 @@ public class StandardCalc implements CalculatorInterface {
       for (Symbol sym : Symbol.values()) {
         if (sym.toString().equals(value)) {
           s = sym;
+          if (!opStack.isEmpty()) {
+            postfixExpression.append(opStack.pop().toString() + " ");
+          }
           break;
         }
       }
+      
+
       opStack.push(s);
 
       System.out.println("Current expression: " + postfixExpression);

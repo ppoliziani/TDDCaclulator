@@ -15,31 +15,43 @@ class StandardCalcTest {
     standCalc = new StandardCalc();
   }
 
-  /*
-   * @Test // 1st Test // To pass this test I created the StandardCalc class that implements the
-   * calculator interface and // implements its evaluate method void testStart() throws
-   * InvalidExpressionException, BadTypeException { assertEquals(standCalc.evaluate("10 10 +"), 20,
-   * "Test to see if evaluate method works and returns a float");
-   * 
-   * }
-   * 
-   * @Test // 2nd Test // To pass this test I created a new scanner on the string passed to the
-   * evaluate method using a // while loop to check if the input still has a next character and an
-   * if statement checking if // that character is a float void testScanner() throws
-   * InvalidExpressionException, BadTypeException { assertEquals(standCalc.evaluate("7 2 5 + /"), 1,
-   * "Expecting to see the scanner print only the numbers"); }
-   * 
-   * @Test // 3rd test // To pass this test I made a call to the RevPolishCalc variable evaluate
-   * method and passed the // expression and returned the result in the StandardCalc class void
-   * testRev() throws InvalidExpressionException, BadTypeException {
-   * assertEquals(standCalc.evaluate("7 2 +"), 9,
-   * "Test to see if the StandardCalc class correctly uses the " +
-   * "RevPolishCalc class to evaluate the converted string"); }
-   * 
-   * @Test // 4th Test // I didn't need to make any amendments to the code to pass this test void
-   * testException() { assertThrows(InvalidExpressionException.class, () -> standCalc.evaluate(""),
-   * "Test to see if the expression is thrown"); }
-   */
+
+  @Test
+  // 1st Test
+  // To pass this test I created the StandardCalc class that implements the
+  // calculator interface and implements its evaluate method
+  void testStart() throws InvalidExpressionException, BadTypeException {
+    assertEquals(standCalc.evaluate("10 10 +"), 20,
+        "Test to see if evaluate method works and returns a float");
+  }
+
+  @Test
+  // 2nd Test
+  // To pass this test I created a new scanner on the string passed to the
+  // evaluate method using a while loop to check if the input still has a next character and an if
+  // statement checking if that character is a float
+  void testScanner() throws InvalidExpressionException, BadTypeException {
+    assertEquals(standCalc.evaluate("7 + 2 / 5"), 7.400000095367432,
+        "Expecting to see the scanner print only the numbers");
+  }
+
+  @Test
+  // 3rd test
+  // To pass this test I made a call to the RevPolishCalc variable evaluate
+  // method and passed the expression and returned the result in the StandardCalc class
+  void testRev() throws InvalidExpressionException, BadTypeException {
+    assertEquals(standCalc.evaluate("7 2 +"), 9,
+        "Test to see if the StandardCalc class correctly uses the "
+            + "RevPolishCalc class to evaluate the converted string");
+  }
+
+  @Test
+  // 4th Test
+  // I didn't need to make any amendments to the code to pass this test
+  void testException() {
+    assertThrows(InvalidExpressionException.class, () -> standCalc.evaluate(""),
+        "Test to see if the expression is thrown");
+  }
 
   @Test
   // 5th Test
@@ -73,6 +85,24 @@ class StandardCalcTest {
     assertEquals(standCalc.evaluate("1 - 2 + 3"), 2,
         "Test to see if the expression if converted to post fix and evaluated correctly");
     assertEquals(standCalc.evaluate("1 - 2 + 3 + 4 - 2 + 8 - 1"), 11,
+        "Test to see if the expression if converted to post fix and evaluated correctly");
+  }
+
+  @Test
+  // 8th Test
+  // To pass this test I added a top() function to the OpStack class as I needed to check the value
+  // of the stack before popping it off. I then checked if the symbol was a left bracket and pushed
+  // that onto the stack. Then I checked if the symbol was a right bracket, as long as the stack
+  // isn't empty and a left bracket isn't read (indicating the closure of the brackets) the symbol
+  // is pushed onto the stack. Lastly to check when an operator is read where to put it, I added a
+  // getPrecedence() function to return the precedence of both the operator read and the one on the
+  // top of the stack. If the operator on the stack if of higher precedence, it pops it off and
+  // appends it to the string. It does this until one of lower precedence is read from the stack and
+  // pushes that operator to the stack.
+  void testPrecedence() throws InvalidExpressionException, BadTypeException {
+    assertEquals(standCalc.evaluate("1 + 2 * 3"), 7,
+        "Test to see if the expression if converted to post fix and evaluated correctly");
+    assertEquals(standCalc.evaluate("1 * 2 + 3"), 5,
         "Test to see if the expression if converted to post fix and evaluated correctly");
   }
 

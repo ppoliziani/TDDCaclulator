@@ -14,6 +14,22 @@ public class StandardCalc implements CalculatorInterface {
 
   OpStack opStack = new OpStack();
   RevPolishCalc rpCalc = new RevPolishCalc();
+  
+  /**
+   * Gets the precedence of the symbols.
+   * 
+   * @param sym symbol to check precedence
+   * @return value of precedence
+   */
+  static int getPrecedence(Symbol sym) {
+    int precedence = 0;
+    if (sym == Symbol.PLUS || sym == Symbol.MINUS) {
+      precedence = 1;
+    } else if (sym == Symbol.TIMES || sym == Symbol.DIVIDE) {
+      precedence = 2;
+    }
+    return precedence;
+  }
 
   /**
    * Evaluates the expression.
@@ -39,22 +55,28 @@ public class StandardCalc implements CalculatorInterface {
         continue;
       }
 
-      // System.out.println(postfixExpression);
-
       String value = expression.next();
       Symbol s = Symbol.INVALID;
       for (Symbol sym : Symbol.values()) {
         if (sym.toString().equals(value)) {
-          s = sym;
-          if (!opStack.isEmpty()) {
-            postfixExpression.append(opStack.pop().toString() + " ");
-          }
+          s = sym;        
           break;
         }
       }
       
-
-      opStack.push(s);
+      if (s == Symbol.LEFT_BRACKET) {
+        opStack.push(s);
+      } else if (s == Symbol.RIGHT_BRACKET) {
+        while (!opStack.isEmpty() && opStack.top() != Symbol.LEFT_BRACKET) {
+          postfixExpression.append(opStack.pop().toString() + " ");
+        }
+        opStack.pop();
+      } else {
+        while (!opStack.isEmpty() && getPrecedence(s) <= getPrecedence(opStack.top())) {
+          postfixExpression.append(opStack.pop().toString() + " ");
+        }
+        opStack.push(s);
+      }
 
       System.out.println("Current expression: " + postfixExpression);
     }

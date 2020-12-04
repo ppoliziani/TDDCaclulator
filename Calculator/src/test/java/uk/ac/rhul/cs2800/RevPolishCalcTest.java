@@ -61,7 +61,8 @@ class RevPolishCalcTest {
     assertEquals(revCalc.evaluate("5 3 2 * +"), 11, "Test to see if the evaluate method works");
     assertEquals(revCalc.evaluate("10 5 /"), 2, "Test to see if the evaluate method works");
     assertEquals(revCalc.evaluate("100 83 -"), 17, "Test to see if the evaluate method works");
-    assertEquals(revCalc.evaluate("5 4 6 + * "), 50, "Test to see if the evaluate method works");
+    assertEquals(revCalc.evaluate("5 4 6 + *"), 50, "Test to see if the evaluate method works");
+    assertEquals(revCalc.evaluate("1 2 * 3 +"), 5, "Test to see if the evaluate method works");
   }
 
   @Test

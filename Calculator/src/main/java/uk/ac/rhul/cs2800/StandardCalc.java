@@ -1,5 +1,6 @@
 package uk.ac.rhul.cs2800;
 
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
 /**
@@ -30,32 +31,37 @@ public class StandardCalc implements CalculatorInterface {
     Scanner expression = new Scanner(what);
 
     while (expression.hasNext()) {
+      
       if (expression.hasNextFloat()) {
         float num = expression.nextFloat();
-        System.out.println(num);
+        System.out.println("VAL: " + num);
         postfixExpression.append(num + " ");
         continue;
       }
+
+      // System.out.println(postfixExpression);
+
       String value = expression.next();
       Symbol s = Symbol.INVALID;
       for (Symbol sym : Symbol.values()) {
         if (sym.toString().equals(value)) {
           s = sym;
-          if (opStack.isEmpty()) { // or precedence is greater
-            opStack.push(s);
-          } else {
-            // check precedence until correct place found
-          }
           break;
         }
       }
+      opStack.push(s);
 
+      System.out.println("Current expression: " + postfixExpression);
     }
     expression.close();
+    
+    while (!opStack.isEmpty()) {
+      postfixExpression.append(opStack.pop().toString() + " ");
+    }
 
-    System.out.println(postfixExpression);
+    System.out.println("Final expression:" + postfixExpression);
 
-    float result = rpCalc.evaluate(what);
+    float result = rpCalc.evaluate(postfixExpression.toString());
     System.out.println(result);
     return result;
   }

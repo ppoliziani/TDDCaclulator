@@ -98,12 +98,37 @@ class StandardCalcTest {
   // getPrecedence() function to return the precedence of both the operator read and the one on the
   // top of the stack. If the operator on the stack if of higher precedence, it pops it off and
   // appends it to the string. It does this until one of lower precedence is read from the stack and
-  // pushes that operator to the stack.
+  // pushes the read operator to the stack.
+  //
   void testPrecedence() throws InvalidExpressionException, BadTypeException {
     assertEquals(standCalc.evaluate("1 + 2 * 3"), 7,
         "Test to see if the expression if converted to post fix and evaluated correctly");
     assertEquals(standCalc.evaluate("1 * 2 + 3"), 5,
         "Test to see if the expression if converted to post fix and evaluated correctly");
+  }
+
+  @Test
+  // 9th Test
+  // To pass this test I added a loop to add spaces to the expression so that it wouldn't evaluate
+  // an invalid value such as "(10". I then handled unbalanced brackets by adding an integer
+  // variable called expectBrackets that increments each time a left bracket is read and decrements
+  // each time a right bracket it read. If this value isn't 0 then there's unbalanced brackets
+  // so the InvalidExpressionException is thrown.
+  void testBrackets() throws InvalidExpressionException, BadTypeException {
+    assertEquals(standCalc.evaluate("( ( 10 / 5 ) + 2 ) * 4"), 16,
+        "Test to see if brackets are correctly handled");
+    assertEquals(standCalc.evaluate("((10 / 5) + 2) * 4"), 16,
+        "Test to see if brackets are correctly handled");
+    assertEquals(standCalc.evaluate("((10/5)+2)*4"), 16,
+        "Test to see if brackets are correctly handled");
+    assertThrows(InvalidExpressionException.class, () -> standCalc.evaluate("1 + 2) * 3"),
+        "Test to see if an unbalanced expression throws an error");
+    assertThrows(InvalidExpressionException.class, () -> standCalc.evaluate("1 + 2 - (4 / 3"),
+        "Test to see if an unbalanced expression throws an error");
+    assertThrows(InvalidExpressionException.class, () -> standCalc.evaluate("1 + 2 - ((4 / 3) * 1"),
+        "Test to see if an unbalanced expression throws an error");
+    assertThrows(InvalidExpressionException.class, () -> standCalc.evaluate("1 + 2 - (4 / 3) * 1)"),
+        "Test to see if an unbalanced expression throws an error");
   }
 
 }

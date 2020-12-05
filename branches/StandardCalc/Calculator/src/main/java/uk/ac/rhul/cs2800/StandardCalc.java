@@ -14,7 +14,7 @@ public class StandardCalc implements CalculatorInterface {
 
   OpStack opStack = new OpStack();
   RevPolishCalc rpCalc = new RevPolishCalc();
-  
+
   /**
    * Gets the precedence of the symbols.
    * 
@@ -41,13 +41,25 @@ public class StandardCalc implements CalculatorInterface {
    */
   public float evaluate(String what) throws InvalidExpressionException, BadTypeException {
 
+    String processed = "";
+
+    for (int i = 0; i < what.length(); i++) {
+      char c = what.charAt(i);
+      if (!Character.isDigit(c)) {
+        processed += " " + c + " ";
+      } else {
+        processed += c;
+      }
+    }
+    System.out.println("Processed: " + processed);
 
     StringBuilder postfixExpression = new StringBuilder();
 
-    Scanner expression = new Scanner(what);
+    Scanner expression = new Scanner(processed);
 
+    int expectBracket = 0;
     while (expression.hasNext()) {
-      
+
       if (expression.hasNextFloat()) {
         float num = expression.nextFloat();
         System.out.println("VAL: " + num);
@@ -56,21 +68,31 @@ public class StandardCalc implements CalculatorInterface {
       }
 
       String value = expression.next();
+      System.out.println("VAL: " + value);
       Symbol s = Symbol.INVALID;
       for (Symbol sym : Symbol.values()) {
         if (sym.toString().equals(value)) {
-          s = sym;        
+          s = sym;
           break;
         }
       }
-      
+
       if (s == Symbol.LEFT_BRACKET) {
         opStack.push(s);
+        expectBracket++;
       } else if (s == Symbol.RIGHT_BRACKET) {
-        while (!opStack.isEmpty() && opStack.top() != Symbol.LEFT_BRACKET) {
-          postfixExpression.append(opStack.pop().toString() + " ");
+        try {
+          if (expectBracket < 1) {
+            throw new InvalidExpressionException("Unbalanced Brackets");
+          }
+          while (!opStack.isEmpty() && opStack.top() != Symbol.LEFT_BRACKET) {
+            postfixExpression.append(opStack.pop().toString() + " ");
+            expectBracket--;
+          }
+          opStack.pop();
+        } catch (EmptyStackException e) {
+          throw new InvalidExpressionException("Unbalanced Brackets");
         }
-        opStack.pop();
       } else {
         while (!opStack.isEmpty() && getPrecedence(s) <= getPrecedence(opStack.top())) {
           postfixExpression.append(opStack.pop().toString() + " ");
@@ -81,7 +103,11 @@ public class StandardCalc implements CalculatorInterface {
       System.out.println("Current expression: " + postfixExpression);
     }
     expression.close();
-    
+
+    if (expectBracket > 0) {
+      throw new InvalidExpressionException("Unbalanced Brackets");
+    }
+
     while (!opStack.isEmpty()) {
       postfixExpression.append(opStack.pop().toString() + " ");
     }

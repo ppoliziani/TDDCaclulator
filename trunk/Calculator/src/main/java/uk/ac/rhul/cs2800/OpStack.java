@@ -38,6 +38,17 @@ public class OpStack {
   }
 
   /**
+   * Gets top element of the stack.
+   * 
+   * @return top of the stack
+   * @throws BadTypeException if type if incorrect
+   */
+  public Symbol top() throws BadTypeException {
+    Entry e = this.numstack.top();
+    return e.getSymbol();
+  }
+
+  /**
    * Checks if the stack is empty or not.
    * 
    * @return if stack is empty

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>5</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>495</x>
+      <y>675</y>
+      <w>105</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>bg=orange
+&lt;&lt;enumeration&gt;&gt;
+_calculator::Type_
+Valid input types for 
+the calculator stack.
+--
+STRING
+NUMBER
+SYMBOL
+INVALID</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>235</x>
+      <y>675</y>
+      <w>105</w>
+      <h>95</h>
+    </coordinates>
+    <panel_attributes>bg=orange
+&lt;&lt;enumeration&gt;&gt;
+_calculator::Symbol_
+Symbols used for arithmetic and 
+their associated character.
+--
+PLUS
+MINUS
+TIMES
+DIVIE
+LEFT_BRACKET
+RIGHT_BRAKCET
+INVALID</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>355</x>
+      <y>615</y>
+      <w>125</w>
+      <h>155</h>
+    </coordinates>
+    <panel_attributes>bg=orange
+_calculator::Entry_
+Objects created to store numeric 
+values, symbols or strings.
+--
+*Attributes*
+-str: String
+-number: float
+-symbol: Symbol
+-type: Type
+--
+*Responsibilities*
+&lt;&lt;constructor&gt;&gt; Entry(float value)
+&lt;&lt;constructor&gt;&gt; Entry(Symbol which)
++getString(): String 
+          {Exception = BadType}
++getValue(): float
+          {Exception = BadType}
++getSymbol(): Symbol 
+          {Exception = BadType}
++getType(): Type</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>340</y>
+      <w>125</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>bg=pink
+_calculator:: OpStack_
+Operator Stack facade for 
+the stack class.
+--
+*Attributes*
+numstack: Stack
+--
+*Responsibilities*
++push(i: Symbol)
++pop(): Symbol
+       {Exception: BadType}
++top(): Symbol
+       {Exception: BadType}
++isEmpty: boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>635</y>
+      <w>85</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>475</x>
+      <y>635</y>
+      <w>80</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;140.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>355</x>
+      <y>215</y>
+      <w>125</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>bg=yellow
+_calculator:: CalculatorInterface_
+Interface for both calculators.
+--
+*Responsibilities*
++evaluate(what: String): float
+       {Exception = InvalidExpression}
+       {Exception = BadType}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>265</x>
+      <y>340</y>
+      <w>125</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>bg=pink
+_calculator:: NumStack_
+Number Stack facade for 
+the stack class.
+--
+*Attributes*
+numstack: Stack
+--
+*Responsibilities*
++push(i: float)
++pop(): float
+       {Exception: BadType}
++isEmpty: boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>355</x>
+      <y>480</y>
+      <w>125</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>bg=pink
+_calculator:: Stack_
+Stack of Entry objects.
+--
+*Attributes*
+stackArray: ArrayList&lt;Entry&gt;
+--
+*Responsibilities*
++size(): int
++top(): Entry
+       {Exception = EmptyStack}
++push(value: Entry)
++pop(): Entry
+       {Exception = EmptyStack}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>195</x>
+      <y>190</y>
+      <w>125</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>bg=yellow
+_calculator:: RevPolishCalc_
+Reverse Polish calculator.
+--
+*Attributes*
+revStack: NumStack
+--
+*Responsibilities*
++evaluate(what: String): float
+       {Exception = InvalidExpression}
+       {Exception = BadType}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>515</x>
+      <y>190</y>
+      <w>125</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>bg=yellow
+_calculator:: StandardCalc_
+Standard Calculator that uses 
+the shunting yard algorithm to 
+convert infix to post-fix expressions.
+--
+*Attributes*
+opStack: OpStack
+rpCalc: RevPolishCalc
+--
+*Responsibilities*
++getPrecedence(sym: Symbol): int
++evaluate(what: String): float
+       {Exception = InvalidExpression}
+       {Exception = BadType}</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>410</x>
+      <y>575</y>
+      <w>15</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>445</y>
+      <w>45</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>475</x>
+      <y>445</y>
+      <w>40</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>250</x>
+      <y>295</y>
+      <w>25</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;30.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>295</y>
+      <w>25</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>30.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>475</x>
+      <y>235</y>
+      <w>50</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>235</y>
+      <w>50</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>355</x>
+      <y>20</y>
+      <w>125</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>bg=red
+_calculator:: CaclModel_
+State design pattern for switching 
+between calculator models.
+--
+*Attributes*
+_revCalc: CalculatorInterface_
+_standCalc: CalculatorInterface_
+_current: CalculatorInterface_
+--
+*Responsibilities*
++evaluate(expression: String): float
+       {Exception = InvalidExpression}
+       {Exception = BadType}
++setInfix(infix: boolean)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>475</x>
+      <y>125</y>
+      <w>50</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>125</y>
+      <w>50</w>
+      <h>75</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+</diagram>

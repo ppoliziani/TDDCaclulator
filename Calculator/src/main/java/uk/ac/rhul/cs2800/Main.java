@@ -15,7 +15,11 @@ public class Main {
    */
   public static void main(String[] args) {
     ViewInterface view = MyView.getInstance();
+    ViewInterface ascii = new AsciiView();
     CalcController controller = new CalcController(view);
+    CalcController controller2 = new CalcController(ascii);
+    //ascii.menu();
+  
   }
 
 }

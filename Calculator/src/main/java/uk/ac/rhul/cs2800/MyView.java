@@ -106,6 +106,24 @@ public class MyView extends Application implements ViewInterface {
   public void addCalcObserver(Observer f) {
     calculateButton.setOnAction(event -> f.notifyObservers());
   }
+  
+  /**
+   * Adds a calculator type observer.
+   * 
+   * @param f Observer
+   */
+  public void addReverseObserver(Observer f) {
+    revButton.setOnAction(event -> f.notifyObservers());
+  }
+  
+  /**
+   * Adds a calculator type observer.
+   * 
+   * @param f Observer
+   */
+  public void addInfixObserver(Observer f) {
+    infixButton.setOnAction(evetn -> f.notifyObservers());
+  }
    
 
   @FXML

@@ -13,3 +13,7 @@ To start with I added a calculate button that when pressed notifies an observer 
 -- Test 4 --
 
 I added the ability to change the calculator type between standard and reverse polish so I tested it by evaluating a post fix expression and then changed the calculator type and evaluated another expression. This threw no errors and the results were correct both times.
+
+-- Test 5 --
+
+I fully implemented the AsciiView for the calculator. To test it I evaluated a few expressions with the default reverse polish calculator and then switched to the infix one and evaluated infix expressions. I then switched back to post-fix to make sure nothing changed and finally quit the application. 

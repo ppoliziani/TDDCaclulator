@@ -17,20 +17,24 @@ public class CalcController {
    * Handles calculation.
    */
   void calculate() {
-    System.out.println("CALC");
     try {
       String expression = view.getExpression();
       float ans = model.evaluate(expression);
       view.setAnswer(ans);
     } catch (InvalidExpressionException | BadTypeException e) {
-      e.printStackTrace();
     }
   }
 
+  /**
+   * Changes the calculator type to reverse polish.
+   */
   void reverseType() {
     model.setInfix(false);
   }
 
+  /**
+   * Changes the calculator type to infix.
+   */
   void infixType() {
     model.setInfix(true);
   }

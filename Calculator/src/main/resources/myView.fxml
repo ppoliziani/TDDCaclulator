@@ -34,8 +34,8 @@
          </GridPane.margin>
       </Label>
       <Label fx:id="resultLabel" prefHeight="26.0" prefWidth="306.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <RadioButton fx:id="revButton" mnemonicParsing="false" onAction="#revClicked" selected="true" text="Reverse Polish" GridPane.rowIndex="2" />
-      <RadioButton fx:id="infixButton" mnemonicParsing="false" onAction="#infixClicked" prefHeight="18.0" prefWidth="64.0" text="Infix" GridPane.rowIndex="3" />
+      <RadioButton fx:id="revButton" mnemonicParsing="false" selected="true" text="Reverse Polish" GridPane.rowIndex="2" />
+      <RadioButton fx:id="infixButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="64.0" text="Infix" GridPane.rowIndex="3" />
       <Button fx:id="calculateButton" mnemonicParsing="false" text="Calculate" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

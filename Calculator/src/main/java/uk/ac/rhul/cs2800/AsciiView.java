@@ -15,9 +15,7 @@ public class AsciiView implements ViewInterface {
   Observer reverse = null;
   Observer infix = null;
 
-  /**
-   * Gets the expression from the command line.
-   */
+  
   @Override
   public String getExpression() {
     return expression;
@@ -43,6 +41,9 @@ public class AsciiView implements ViewInterface {
     infix = f;
   }
 
+  /**
+   * Gets the expression from the command line.
+   */
   @Override
   public void menu() {
     Scanner scanner = new Scanner(System.in);
@@ -53,11 +54,13 @@ public class AsciiView implements ViewInterface {
         + "Enter an expression: ");
 
     while (scanner.hasNext() && !done) {
-      String letter = scanner.next();
+      String letter = scanner.nextLine();
+      System.out.println("Letter: " + letter);
       switch (letter.toUpperCase().charAt(0)) {
         case 'C':
           if (calculator != null) {
             calculator.notifyObservers();
+            expression = "";
           }
           break;
         case 'R':
@@ -73,9 +76,8 @@ public class AsciiView implements ViewInterface {
           }
           break;
         case '!':
-          expression = letter.substring(1, letter.length());
-          System.out.println("Experssion to be evaluated: " + expression);
-          // done = true;
+          expression = letter.substring(1);
+          System.out.println("Expression to be evaluated: " + expression);
           break;
         case 'Q':
           System.out.println("Ending session");

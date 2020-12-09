@@ -26,8 +26,18 @@ public class RevPolishCalc implements CalculatorInterface {
     if (what.equals("")) {
       throw new InvalidExpressionException("Must provide an expression");
     }
+    
+    String processed = "";
+    for (int i = 0; i < what.length(); i++) {
+      char c = what.charAt(i);
+      if (!Character.isDigit(c)) {
+        processed += " " + c + " ";
+      } else {
+        processed += c;
+      }
+    }
 
-    Scanner expression = new Scanner(what);
+    Scanner expression = new Scanner(processed);
 
     try {
       while (expression.hasNext()) {

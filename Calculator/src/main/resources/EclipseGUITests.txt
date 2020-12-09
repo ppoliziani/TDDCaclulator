@@ -1,0 +1,7 @@
+-- Test 1 -- 
+
+I created a basic gui with a button and a label. I set it so that the label would toggle between the text "Label ON" and "Label OFF". I tested this by launching the gui and checking if by pressing the button the label updated
+
+-- Test 2 --
+
+Here I updated the gui by adding more elements. I added headers, a text box to enter the expression and another that returns it. The text entered would be printed in the result box when the user pressed enter.

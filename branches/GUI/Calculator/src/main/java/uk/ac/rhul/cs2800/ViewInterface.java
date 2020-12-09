@@ -30,6 +30,20 @@ public interface ViewInterface {
   void addCalcObserver(Observer f);
   
   /**
+   * Adds Type observer when calculator type is changed.
+   * 
+   * @param f observer
+   */
+  void addReverseObserver(Observer f);
+  
+  /**
+   * Adds Type observer when calculator type is changed.
+   * 
+   * @param f observer
+   */
+  void addInfixObserver(Observer f);
+  
+  /**
    * Activates buttons.
    */
   void menu();

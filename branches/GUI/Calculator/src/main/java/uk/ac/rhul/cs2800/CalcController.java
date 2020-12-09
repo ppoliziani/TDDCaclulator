@@ -10,11 +10,12 @@ package uk.ac.rhul.cs2800;
 public class CalcController {
 
   ViewInterface view;
- 
+
   CalcModel model = new CalcModel();
 
-  boolean infix;
-
+  /**
+   * Handles calculation.
+   */
   void calculate() {
     System.out.println("CALC");
     try {
@@ -26,9 +27,19 @@ public class CalcController {
     }
   }
 
+  void reverseType() {
+    model.setInfix(false);
+  }
+
+  void infixType() {
+    model.setInfix(true);
+  }
+
   CalcController(ViewInterface newView) {
     view = newView;
     newView.addCalcObserver(this::calculate);
+    newView.addReverseObserver(this::reverseType);
+    newView.addInfixObserver(this::infixType);
     newView.menu();
   }
 

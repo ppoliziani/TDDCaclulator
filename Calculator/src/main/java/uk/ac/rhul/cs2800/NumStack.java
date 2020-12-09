@@ -3,7 +3,7 @@ package uk.ac.rhul.cs2800;
 import java.util.EmptyStackException;
 
 /**
- * Number Stack facade for the stack class.
+ * Number Stack abstraction for the stack class.
  * 
  * @author Philip
  */

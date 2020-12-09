@@ -3,7 +3,7 @@ package uk.ac.rhul.cs2800;
 import java.util.EmptyStackException;
 
 /**
- * Operator Stack facade for the stack class.
+ * Operation Stack facade for the stack class.
  * 
  * @author Philip
  *

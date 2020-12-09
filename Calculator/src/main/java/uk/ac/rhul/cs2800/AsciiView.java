@@ -23,7 +23,7 @@ public class AsciiView implements ViewInterface {
 
   @Override
   public void setAnswer(float ans) {
-    System.out.println(ans);
+    System.out.println("Result: " + ans);
   }
 
   @Override
@@ -48,14 +48,13 @@ public class AsciiView implements ViewInterface {
   public void menu() {
     Scanner scanner = new Scanner(System.in);
     boolean done = false;
-    System.out.println("-- Controls --\n - R to set type to reverse polish\n "
+    System.out.println("-- Controls --\n - R to set type to reverse polish (default)\n "
         + "- I to set type to infix\n - !Expression to set the expression\n - C to calculate\n "
         + "- Q to quit\n -- Controls --\n\n"
         + "Enter an expression: ");
 
     while (scanner.hasNext() && !done) {
       String letter = scanner.nextLine();
-      System.out.println("Letter: " + letter);
       switch (letter.toUpperCase().charAt(0)) {
         case 'C':
           if (calculator != null) {
@@ -82,6 +81,7 @@ public class AsciiView implements ViewInterface {
         case 'Q':
           System.out.println("Ending session");
           done = true;
+          System.exit(0);
           break;
         default:
           break;

@@ -51,7 +51,6 @@ public class StandardCalc implements CalculatorInterface {
         processed += c;
       }
     }
-    System.out.println("Processed: " + processed);
 
     StringBuilder postfixExpression = new StringBuilder();
 

@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * @author Philip
  *
  */
-public class GraphicalUserInterface extends Application {
+public class GraphicalUserInterface {
 
   /**
    * Main method.
@@ -20,18 +20,10 @@ public class GraphicalUserInterface extends Application {
    * @param args not relevant
    */
   public static void main(String[] args) {
-    launch(args);
+    // launch(args);
+    System.out.println(2);
   }
 
-  @Override
-  public void start(Stage primaryStage) throws Exception {
-    Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("myView.fxml"));
-    Scene scene = new Scene(root, 800, 500);
-    primaryStage.setScene(scene);
-    primaryStage.show();
-    
-  }
-  
-  
+
 
 }

@@ -67,7 +67,8 @@ public class MyView extends Application implements ViewInterface {
   @Override
   public void start(Stage primaryStage) throws Exception {
     Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("myView.fxml"));
-    Scene scene = new Scene(root, 800, 500);
+    Scene scene = new Scene(root, 300, 150);
+    primaryStage.setTitle("Calculator");
     primaryStage.setScene(scene);
     primaryStage.show();
 
@@ -114,6 +115,7 @@ public class MyView extends Application implements ViewInterface {
    */
   public void addReverseObserver(Observer f) {
     revButton.setOnAction(event -> f.notifyObservers());
+    //revButton.setOnAction(event -> infixButton.setSelected(false));
   }
   
   /**
@@ -123,21 +125,9 @@ public class MyView extends Application implements ViewInterface {
    */
   public void addInfixObserver(Observer f) {
     infixButton.setOnAction(evetn -> f.notifyObservers());
+    //infixButton.setOnAction(event -> revButton.setSelected(false));
   }
-   
-
-  @FXML
-  void infixClicked(ActionEvent event) {
-    // cm.setInfix(true);
-    revButton.setSelected(false);
-
-  }
-
-  @FXML
-  void revClicked(ActionEvent event) {
-    // cm.setInfix(false);
-    infixButton.setSelected(false);
-  }
+  
 
 
 

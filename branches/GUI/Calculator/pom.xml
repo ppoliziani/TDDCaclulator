@@ -76,7 +76,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<mainClass>calculator.Main</mainClass>
+					<mainClass>uk.ac.rhul.cs2800.Main</mainClass>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -88,7 +88,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>calculator.Main</mainClass>
+							<mainClass>uk.ac.rhul.cs2800.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

@@ -62,13 +62,11 @@ public class StandardCalc implements CalculatorInterface {
 
       if (expression.hasNextFloat()) {
         float num = expression.nextFloat();
-        System.out.println("VAL: " + num);
         postfixExpression.append(num + " ");
         continue;
       }
 
       String value = expression.next();
-      System.out.println("VAL: " + value);
       Symbol s = Symbol.INVALID;
       for (Symbol sym : Symbol.values()) {
         if (sym.toString().equals(value)) {
@@ -100,7 +98,6 @@ public class StandardCalc implements CalculatorInterface {
         opStack.push(s);
       }
 
-      System.out.println("Current expression: " + postfixExpression);
     }
     expression.close();
 
@@ -112,10 +109,7 @@ public class StandardCalc implements CalculatorInterface {
       postfixExpression.append(opStack.pop().toString() + " ");
     }
 
-    System.out.println("Final expression:" + postfixExpression);
-
     float result = rpCalc.evaluate(postfixExpression.toString());
-    System.out.println(result);
     return result;
   }
 

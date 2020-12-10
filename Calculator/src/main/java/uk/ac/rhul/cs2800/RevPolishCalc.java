@@ -1,6 +1,7 @@
 package uk.ac.rhul.cs2800;
 
 import java.text.DecimalFormat;
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
 /**

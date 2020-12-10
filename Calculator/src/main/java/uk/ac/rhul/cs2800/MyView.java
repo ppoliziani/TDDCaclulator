@@ -24,7 +24,7 @@ public class MyView extends Application implements ViewInterface {
   private TextField expressionBox;
 
   @FXML
-  private Label experssionTitle;
+  private Label expressionTitle;
 
   @FXML
   private Label resultTitle;

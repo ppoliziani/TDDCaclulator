@@ -22,6 +22,7 @@ public class CalcController {
       float ans = model.evaluate(expression);
       view.setAnswer(ans);
     } catch (InvalidExpressionException | BadTypeException e) {
+      e.printStackTrace();
     }
   }
 
